@@ -1,3 +1,4 @@
+<?php include 'header.php';?>
 <?php
 	session_start();
     if (!isset($_SESSION['username'])) {
@@ -10,14 +11,15 @@
 <html>
 <head>
 	<title>Inventory System || Category</title>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-<a href="logout.php"> Log Out </a><br>
-<a href="home.php"> Home </a>
 <center>
-	<a href="add_category.php"> Add Category </a><br/><br/>
+<div class="add_ctg_heading">CATEGORY</div>
+<div align="right" style="padding-right:20px; padding-top:20px"><a href="logout.php" class="btn btn-danger" style="width:110px">Logout</a></div>
 
-	<table border="1">
+	<table class="table-striped" style="margin-top:10px;">
 		<thead>
 			<tr>
 				<th>Category Name</th>
@@ -30,11 +32,26 @@
 			$sql = "SELECT * FROM `category`";
 			$result = mysql_query($sql);
 			while($row = mysql_fetch_assoc($result)) {
-					echo "<tr> <td>". $row["ctg_name"]."</td> <td>" . $row["unit_name"]. "</td> <td><a href='remove_category.php?ctg_id=". $row["ctg_id"]."'>Remove</a></td> </tr>";
+					echo "<tr> <td>". $row["ctg_name"]."</td> <td>" . $row["unit_name"]. "</td> <td><button onclick='removeItem(". $row["ctg_id"].");'>Remove</button></td> </tr>";
 			}
 		?>
 		</tbody>
 	</table>
+	<br>
+	<br>
+	<a href="add_category.php" class="btn btn-primary" style="width:100px">Add New</a>&nbsp;
+	<a href="home.php" class="btn btn-primary" style="width:100px">Home</a>
 </center>
 </body>
+<script type="text/javascript">
+
+	function removeItem(id) {
+		var r = confirm("Do you want Remove this Category ?");
+		if (r == true) {
+			window.location="remove_category.php?ctg_id=" + id;
+		}
+	}
+
+</script>
+<?php include 'footer2.php';?>
 </html>

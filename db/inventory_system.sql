@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 20, 2016 at 09:51 PM
+-- Generation Time: Jun 22, 2016 at 11:08 PM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `category` (
 `ctg_id` int(11) NOT NULL,
   `ctg_name` varchar(50) NOT NULL,
   `unit_name` varchar(50) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `category`
@@ -53,14 +53,15 @@ CREATE TABLE IF NOT EXISTS `client` (
   `total_amount` double NOT NULL,
   `paid` double NOT NULL,
   `due` double NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `client`
 --
 
 INSERT INTO `client` (`client_id`, `client_name`, `client_com_name`, `total_amount`, `paid`, `due`) VALUES
-(3, 'mamun', 'IT', 5000, 4000, 1000);
+(3, 'mamun', 'IT', 5000, 4000, 1000),
+(4, 'Tanvir', 'IT', 54000, 25000, 29000);
 
 -- --------------------------------------------------------
 
@@ -72,19 +73,18 @@ CREATE TABLE IF NOT EXISTS `product` (
 `product_id` int(11) NOT NULL,
   `product_name` varchar(80) NOT NULL,
   `ctg_id` int(11) NOT NULL,
-  `quantity` double NOT NULL,
-  `total_prize` double NOT NULL
+  `quantity` double NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `product`
 --
 
-INSERT INTO `product` (`product_id`, `product_name`, `ctg_id`, `quantity`, `total_prize`) VALUES
-(2, 'Shah Cement', 3, 46, 5000),
-(3, 'AKS Steal', 4, 48, 50000),
-(4, 'Akij Cement', 3, 125, 20000),
-(5, 'BSRM Rod', 4, 340, 500000);
+INSERT INTO `product` (`product_id`, `product_name`, `ctg_id`, `quantity`) VALUES
+(2, 'Shah Cement', 3, 45),
+(3, 'AKS Steal', 4, 48),
+(4, 'Akij Cement', 3, 125),
+(5, 'BSRM Rod', 4, 337);
 
 -- --------------------------------------------------------
 
@@ -126,7 +126,7 @@ CREATE TABLE IF NOT EXISTS `sales_trans` (
   `quantity` double NOT NULL,
   `unit_prize` double NOT NULL,
   `total_prize` double NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `sales_trans`
@@ -146,7 +146,9 @@ INSERT INTO `sales_trans` (`id`, `date`, `client_name`, `client_com_name`, `ctg_
 (11, '2016-06-17', 'Haidar', 'Wezend', 3, 4, 2, 500, 1000),
 (12, '2016-06-08', 'Tanvir', 'Wezend IT', 3, 4, 3, 520, 1560),
 (13, '2016-06-08', 'Mostafa', 'IT', 3, 2, 3, 120, 360),
-(14, '2016-06-08', 'Mostafa', 'Wezend IT', 4, 3, 2, 102, 204);
+(14, '2016-06-08', 'Mostafa', 'Wezend IT', 4, 3, 2, 102, 204),
+(15, '2016-06-01', 'Mostafa', 'Wezend', 3, 2, 1, 520, 520),
+(16, '2016-06-15', 'Mostafa', 'IT', 4, 5, 3, 6500, 19500);
 
 -- --------------------------------------------------------
 
@@ -261,12 +263,12 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-MODIFY `ctg_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+MODIFY `ctg_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `client`
 --
 ALTER TABLE `client`
-MODIFY `client_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+MODIFY `client_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `product`
 --
@@ -281,7 +283,7 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 -- AUTO_INCREMENT for table `sales_trans`
 --
 ALTER TABLE `sales_trans`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT for table `temp_purchase_trans`
 --

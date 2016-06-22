@@ -1,3 +1,4 @@
+<?php include 'header.php';?>
 <?php
 	session_start();
     if (!isset($_SESSION['username'])) {
@@ -9,22 +10,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Inventory System || Report</title>
+	<title>Inventory System || Purchase Report</title>
 	<script src="jquery-1.12.3.min.js"></script>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-<a href="logout.php"> Log Out </a><br>
-<a href="home.php"> Home </a><hr>
-<button><a href="report_sales.php"><b>Sales Report</b></a></button>
-<center>
 
-	<h3>Purchase Report</h3><br>
+<center>
+<div class="add_ctg_heading">PURCHASE REPORT</div>
+<div align="right" style="padding-right:20px; padding-top:20px"><a href="logout.php" class="btn btn-danger" style="width:110px">Logout</a></div>
+
 	<form action="" method="POST">
-	Date From : <input type="date" name="date_from" placeholder="dd-mm-yyyy"> ::
-	To : <input type="date" name="date_to" placeholder="dd-mm-yyyy">
-	<input type="submit" name="submit" value=" Show ">
+	<table>
+	<tr>
+	<td style="padding-right:15px"><b>Date From</b></td>
+	<td style="padding-right:12px"><input type="date" name="date_from" placeholder="yyyy-mm-dd" class="form-control"></td>
+	<td style="padding-right:5px"><b>To</b>&nbsp;&nbsp;</td>
+	<td style="padding-right:13px"><input type="date" name="date_to" placeholder="yyyy-mm-dd" class="form-control"></td>
+	<td><input type="submit" name="submit" value="Search" class="btn btn-primary"></td>
+	
+	<tr>
+	<table>
 	</form>
-	<br>
 	<?php
 		if(isset($_POST['submit'])){
 
@@ -43,7 +51,8 @@
 		}
 	?>
 	<br>
-	<table border="1">
+	<br>
+	<table class="table-striped" style="width:80%">
 		<thead>
 			<tr>
 				<th>Date</th>
@@ -65,6 +74,12 @@
 			?>
 		</tbody>
 	</table>
+	<br>
+	<br>
+	<a href="report_sales.php" class="btn btn-primary" style="width:140px; padding:7px">Sales Report</a><br><br>
+	<a href="report.php" class="btn btn-primary" style="width:100px">Back</a>&nbsp;
+	<a href="home.php" class="btn btn-primary" style="width:100px">Home</a>
 </center>
 </body>
+<?php include 'footer2.php';?>
 </html>

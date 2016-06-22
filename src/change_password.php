@@ -1,32 +1,46 @@
+<?php include 'header.php';?>
 <?php
    include "db.php";
 ?>
 <html>
 <head>
 	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<title>Chage Password</title>
+   <script src="jquery-1.12.3.min.js"></script>
 </head>
-   
-<body bgcolor = "#FFFFFF">
-
-   <div align = "center">
-      <div class="div1">
-         <div class="div2">
-            <b>Chage Password</b>
-         </div>
-
-         <div class = "div3">
-            <form action="" method="post">
-            <label>User Name</label><input type ="text" name ="user_name" class = "box"/><br /><br />
-            <label>Old Pass</label><input type ="password" name ="old_pass" class = "box"/><br /><br />
-            <label>New Pass</label><input type ="password" name ="new_pass" class = "box" /><br/><br/>
-            <input type = "submit" name="submit" value = " Change "/><br />
+<center>
+<div class="add_ctg_heading">CHANGE PASSWORD</div> 
+<body>
+<div class="add_ctg" style="width: 500px; margin-top:60px; padding-top: 40px; padding-bottom: 30px;">
+            <table class="add_ctg_table">
+			<form action="" method="post">
+			
+			<tr class="form-group">
+            <td style="padding-right: 15px;">User Name</td>
+			<td><input type ="text" name ="user_name" class="form-control"/></td>
+			</tr>
+			
+			<tr class="form-group">
+            <td style="padding-right: 15px;">Old Password</td>
+			<td><input type ="password" name ="old_pass" class="form-control"/></td>
+			</tr>
+			
+			<tr class="form-group">
+            <td style="padding-right: 15px;">New Password</td>
+			<td><input type ="password" name ="new_pass" class="form-control" /></td>
+			</tr>
+			
+			<tr class="form-group">
+            <td colspan="2"><input type = "submit" name="submit" value = "Change" class="btn btn-primary" style="width:35%"//></td>
+			</tr>
+			
             </form>
-         </div>
-      </div>
-   </div>
+			</table>
+</div>
 
 </body>
+</center>
 <?php
 if(isset($_POST['submit'])){
 
@@ -44,11 +58,19 @@ if(isset($_POST['submit'])){
       {
          $sql = "UPDATE `user` SET `password`='$newPass' WHERE user_name='$user_name'";
          mysql_query($sql);
-         
-         header('Location: login.php');
+         echo "<script type='text/javascript'> $( document ).ready(function() {
+                                    alert('Password Successfully Change.!');
+                                    window.location='login.php';
+                                 });
+         </script>";
       }
-      else
-      echo "Invalid username or Old password!";
+      else{
+         echo "<script type='text/javascript'> $( document ).ready(function() {
+                                    alert('Invalied UserName / Old Password..!');
+                                 });
+         </script>";
+      }
 }
 ?>
+<?php include 'footer.php';?>
 </html>

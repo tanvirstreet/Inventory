@@ -50,7 +50,6 @@
 	<br><br>
 	<?php
 		if(isset($_POST['submit'])){
-
 		  $date = $_POST['date'];
 		  $client_name = $_POST['client_name'];
 		  $client_com_name = $_POST['client_com_name'];
@@ -59,10 +58,8 @@
 		  $quantity = $_POST['quantity'];
 		  $unit_prize = $_POST['unit_prize'];
 		  $total_prize = $quantity * $unit_prize;
-
 		  mysql_query("INSERT INTO `temp_sales_trans`(`date`, `client_name`, `client_com_name`, `ctg_id`, `product_id`, `quantity`, `unit_prize`, `total_prize`) VALUES ('$date','$client_name','$client_com_name','$ctg_id','$product_id','$quantity','$unit_prize','$total_prize')");
 		}
-
 	?>
 
 	<table border="1">
@@ -82,9 +79,7 @@
 		<tbody>
 			<?php
 				$sql = "SELECT t1.`date`, t1.`client_name`, t1.`client_com_name`, t1.`ctg_id`, t1.`product_id`, t1.`quantity`, t1.`unit_prize`, t1.`total_prize`, t2.`ctg_name`,t2.`unit_name`,t3.`product_name` FROM `temp_sales_trans` as t1 INNER JOIN `category` as t2 on t1.`ctg_id`=t2.`ctg_id` INNER JOIN `product` as t3 on t1.`product_id`= t3.`product_id`";
-
 				$result = mysql_query($sql);
-
 			while ($row = mysql_fetch_assoc($result)) {
 				echo "<tr> <td>". $row["date"]."</td> <td>" . $row["client_name"]. "</td><td>".$row["client_com_name"]."</td><td>".$row["ctg_name"]."</td><td>".$row["product_name"]."</td><td>".$row["quantity"]."</td><td>".$row["unit_name"]."</td><td>".$row["unit_prize"]."</td><td>".$row["total_prize"]."</td></tr>";
 			}
@@ -94,7 +89,6 @@
 </center>
 </body>
 <script type="text/javascript">
-
 	function load_pro() {
 		var ctg_id = $('#ctg_id').val();
 		$.ajax({
@@ -108,10 +102,8 @@
 				}
 			});
 	}
-
 	function print(){
 		window.location="confirm_sales.php";
 	}
-
 </script>
 </html>

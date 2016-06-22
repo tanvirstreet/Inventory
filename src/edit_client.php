@@ -1,3 +1,4 @@
+<?php include 'header.php';?>
 <?php
 	session_start();
     if (!isset($_SESSION['username'])) {
@@ -16,28 +17,55 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Inventory System || Add Client</title>
+	<title>Inventory System || Edit Client</title>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
 <center>
-<h1>Edit Client</h1>
+<div class="add_ctg_heading">EDIT CLIENT</div>
+<div align="right" style="padding-right:20px; padding-top:20px"><a href="logout.php" class="btn btn-danger" style="width:110px">Logout</a></div>
 
 <?php
 	$result = mysql_query($sql);
 	$row = mysql_fetch_assoc($result);
 	$paid_before = $row['paid'];
 ?>
-<hr>
+
+<div class="add_ctg" style="padding-top:25px; padding-bottom:10px">
 	<form action="" method="POST">
-		Client Name: <input type="text" name="client_name" value="<?php echo $row['client_name'];?>" readonly><br>
-		Company Name : <input type="text" name="client_com_name" value="<?php echo $row['client_com_name'];?>" readonly><br>
-		Total Amount : <input type="number" name="total_amount" value="<?php echo $row['total_amount'];?>"><br>
-		Due : <input type="number" name="due" value="<?php echo $row['due'];?>" readonly><br>
-		Paid : <input type="number" name="paid"  value="<?php echo $row['paid'];?>" required><span style="color: red">*</span><br>
+	<table class="add_ctg_table">
+	
+	<tr class="form-group"><td style="padding-right: 15px;">Client Name</td>
+		<td><input type="text" name="client_name" value="<?php echo $row['client_name'];?>"   class="form-control" readonly></td>
+		</tr>
+	
+	<tr class="form-group"><td style="padding-right: 15px;">Company Name</td>
+		<td><input type="text" name="client_com_name" value="<?php echo $row['client_com_name'];?>" class="form-control" readonly></td>
+		</tr>
+	
+	<tr class="form-group"><td style="padding-right: 15px;">Total Amount</td>
+		<td><input type="number" name="total_amount" value="<?php echo $row['total_amount'];?>"class="form-control"></td>
+		</tr>
+		
+	<tr class="form-group"><td style="padding-right: 15px;">Due</td>
+		<td><input type="number" name="due" value="<?php echo $row['due'];?>" class="form-control" readonly></td>
+		</tr>
+		
+	<tr class="form-group"><td style="padding-right: 15px;">Paid</td>
+		<td><input type="number" name="paid"  value="<?php echo $row['paid'];?>" class="form-control" required></td>
+		</tr>
+		
+	<tr class="form-group">
 		<input type="hidden" name="client_id" value="<?php echo $row['client_id'];?>">
-		<input type="submit" name="submit" value="Save">
-		<button><a href='client.php'>Cancel</a></button>
+		<td colspan="2"><input type="submit" name="submit" value="Save" class="btn btn-primary"style="width:20%"></td>
+	</tr>
+	</table>
 	</form>
+</div>
+<br>
+	<a href="client.php" class="btn btn-primary" style="width:100px">Back</a>&nbsp;
+	<a href="home.php" class="btn btn-primary" style="width:100px">Home</a>
 </center>
 </body>
 <?php
@@ -64,4 +92,5 @@ if(isset($_POST['submit'])){
 }
 
 ?>
+<?php include 'footer2.php';?>
 </html>

@@ -1,30 +1,42 @@
+<?php include 'header.php';?>
 <html>
 
    <head>
 		<link rel="stylesheet" type="text/css" href="style.css">
-		<title>Inventory System || Login Page</title>
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<title>Inventory System || Login</title>
+		<script src="jquery-1.12.3.min.js"></script>
    </head>
    
    <body bgcolor = "#FFFFFF">
-	
-      <div align = "center">
-         <div class="div1">
-            <div class="div2"><b>Login</b></div>
-				
-            <div class = "div3">
 
-<!--Your Working Area-->             
+		<center>
+<div class="add_ctg_heading">LOGIN</div>
+
+		<div class="add_ctg" style="width: 500px; margin-top:80px; padding-top: 40px; padding-bottom: 40px;">
+			<table class="add_ctg_table">
                <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-                  <label>UserName  :</label><input type ="text" name="username" class="box"/><br /><br />
-                  <label>Password  :</label><input type ="password" name="password" class="box" /><br/><br/>
-				     <a href="change_password.php" class="passchange">Change Password</a>
-                  <input type="submit" name="submit" value ="Submit"/><br />
-               </form>
-			</div>
+                  <tr class="form-group">
+				  <td style="padding-right: 15px;">UserName</td>
+				  <td><input type="text" name="username" class="form-control"/></td>
+				  </tr>
+				  
+				  <tr class="form-group">
+				  <td style="padding-right: 15px;">Password</td>
+                  <td><input type ="password" name="password" class="form-control"/></td>
+				  </tr>
+				  </tr>
+				  </table>
 				
-         </div>
-      </div>
-
+				<div style="padding-top:12px">
+				<a href="change_password.php" class="btn btn-primary" style="width:20%">Change</a>
+				&nbsp;<input type="submit" name="submit" value ="Login" class="btn btn-primary" style="width:20%"/>
+				</div>
+				  
+               </form>
+		</div>
+		
+		</center>
    </body>
 <?php
 include "db.php";
@@ -47,8 +59,13 @@ if(isset($_POST['submit'])){
          
          header('Location: home.php');
       }
-      else
-      echo "Invalid username or password!";
+      else{
+      	 echo "<script type='text/javascript'> $( document ).ready(function() {
+										    	alert('Invalied UserName / Password..!');
+											});
+			</script>";
+      }
 }
 ?>
+<?php include 'footer.php';?>
 </html>

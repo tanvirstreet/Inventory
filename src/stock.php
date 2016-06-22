@@ -1,3 +1,4 @@
+<?php include 'header.php';?>
 <?php
 	session_start();
     if (!isset($_SESSION['username'])) {
@@ -10,14 +11,22 @@
 <html>
 <head>
 	<title>Inventory System || Stock</title>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-<a href="logout.php"> Log Out </a><br>
-<a href="home.php"> Home </a>
 <center>
+<div class="add_ctg_heading">STOCK</div>
+<div align="right" style="padding-right:20px; padding-top:20px"><a href="logout.php" class="btn btn-danger" style="width:110px">Logout</a></div>
 <form action="stock.php?ctg_id=" method="GET">
-Select Category: <select name="ctg_id">
-					<option value=""></option>
+
+<table style="width:33%">
+<tr>
+<td style="text-align:right; padding-right:15px"><b>Category</b></td>
+<td style="padding-right:15px">
+<select name="ctg_id" class="form-control" id="sel1">
+
+					<option value="" disabled selected>select category</option>
 					<?php
 					$sql = "SELECT t1.`ctg_id`, t1.`ctg_name` FROM `category` as t1";
 							$result = mysql_query($sql);
@@ -26,8 +35,14 @@ Select Category: <select name="ctg_id">
 						}
 					?>
 				</select>
-				<input type="submit" name="submit">
+</td>
+<td>
+<input type="submit" name="submit" value="Search" class="btn btn-primary">
+</td>
+</tr>
 </form>
+</table>
+<br>
 
 <?php
 if(isset($_GET['ctg_id'])){
@@ -43,12 +58,12 @@ if(isset($_GET['ctg_id'])){
 	$sql = "SELECT t1.`product_id`, t1.`product_name`, t2.`ctg_name`, t1.`quantity`, t2.`unit_name` FROM `product` as t1 INNER JOIN `category` as t2 on t1.`ctg_id` = t2.`ctg_id`";	
 }
 ?>
-	<table border="1">
+	<table class="table-striped">
 		<thead>
 			<tr>
-				<th>Category Name</th>
-				<th>Product Name</th>
-				<th>quantity</th>
+				<th>Category</th>
+				<th>Product</th>
+				<th>Quantity</th>
 				<th>Unit</th>
 			</tr>
 		</thead>
@@ -61,6 +76,11 @@ if(isset($_GET['ctg_id'])){
 		?>
 		</tbody>
 	</table>
+	<br>
+	<br>
+	<a href="home.php" class="btn btn-primary" style="width:110px"> Home </a>
 </center>
 </body>
+<?php include 'footer2.php';?>
+
 </html>

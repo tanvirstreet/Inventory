@@ -1,3 +1,4 @@
+<?php include 'header.php';?>
 <?php
 	session_start();
     if (!isset($_SESSION['username'])) {
@@ -11,35 +12,73 @@
 <head>
 	<title>Inventory System || Purchase</title>
 	<script src="jquery-1.12.3.min.js"></script>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-<a href="logout.php"> Log Out </a><br>
-<a href="home.php"> Home </a>
 <center>
+<div class="add_ctg_heading">PURCHASE</div>
+<div align="right" style="padding-right:20px; padding-top:20px">
+<a href="home.php" class="btn btn-info" style="width:110px">Home</a>
+<a href="logout.php" class="btn btn-danger" style="width:110px">Logout</a>
+</div>
+
+
 <?php
 $sql = "SELECT t1.`ctg_id`, t1.`ctg_name` FROM `category` as t1";
-		$result = mysql_query($sql);
+		$result = mysql_query($sql); 
 ?>
+<div class="add_ctg" style="padding-top:20px; padding-bottom:5px">
 	<form action="" method="post">
-		Date : <input type="date" name="date" placeholder="dd-mm-yyyy"><br>
-
-		Category Name: <select onchange="load_pro();" id="ctg_id" name="ctg_id">
-							<option value=""></option>
+	<table class="add_ctg_table">
+	<tr class="form-group">
+		<td style="padding-right: 15px;">Date</td>
+		<td><input type="date" name="date" placeholder="yyyy-mm-dd" class="form-control"></td>
+	</tr>
+	
+	<tr class="form-group">
+		<td style="padding-right: 15px;">Category Name</td>
+		<td><select onchange="load_pro();" id="ctg_id" name="ctg_id" class="form-control" id="sel1">
+							<option value="" disabled selected>select category</option>
 							<?php
 								while ($row = mysql_fetch_assoc($result)) {
 									echo "<option value=".$row['ctg_id'].">".$row['ctg_name']."</option>";	
 								}
 							?>
-						</select><br>
-		Product Name: <select id="product_name" name="pro_id"> </select><br>
-
-		Quantity: <input type="number" name="quantity"><br>
-		Unit Price: <input type="number" name="unit_prize"><br>
-		<input type="submit" name="submit" value="Add">
+						</select>
+		</td>
+	</tr>
+	
+	<tr class="form-group">
+		<td style="padding-right: 15px;">Product Name</td>
+		<td><select id="product_name" name="pro_id" class="form-control" id="sel1">
+		<option value="" disabled selected>select product</option>
+		</select></td>
+	</tr>
+	
+	<tr class="form-group">
+		<td style="padding-right: 15px;">Quantity</td>
+		<td><input type="number" name="quantity" class="form-control"></td>
+	</tr>
+	
+	<tr class="form-group">
+		<td style="padding-right: 15px;">Unit Price</td>
+		<td><input type="number" name="unit_prize" class="form-control"></td>
+	</tr>
+	
+	<tr class="form-group">
+		<td colspan="2"><input type="submit" name="submit" value="Add" class="btn btn-primary" style="width:80px"></td>
+	</tr>
+	
+	<tr class="form-group">
+		<td style="text-align:right"><a href="confirm_purchase.php" class="btn btn-primary" style="width:100px">Confirm</a></td>
+		<td style="text-align:left; padding-left:20px"><a href="cancel_purchase.php" class="btn btn-primary" style="width:100px">Cancel</a></td>
+	</tr>
+	
+	</table>
 	</form>
-	<button><a href="confirm_purchase.php">Confirm</a></button>
-	<button><a href="cancel_purchase.php">Cancel</a></button>
-	<br><br>
+</div>
+
 
 	<?php
 		if(isset($_POST['submit'])){
@@ -60,7 +99,7 @@ $sql = "SELECT t1.`ctg_id`, t1.`ctg_name` FROM `category` as t1";
 
 	?>
 
-	<table border="1">
+	<table class="table-striped" style="margin-top:30px; width:80%">
 		<thead>
 			<tr>
 				<th>Date</th>
@@ -106,4 +145,5 @@ $sql = "SELECT t1.`ctg_id`, t1.`ctg_name` FROM `category` as t1";
 	}
 
 </script>
+<?php include 'footer2.php';?>
 </html>
